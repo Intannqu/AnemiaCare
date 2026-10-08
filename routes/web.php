@@ -2,31 +2,45 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
 
-// Halaman utama / Informasi Anemia
+
+// =========================
+// INFORMASI ANEMIA / HOME
+// =========================
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
 
-// Halaman Tentang Sistem
+// =========================
+// TENTANG SISTEM
+// =========================
+
 Route::get('/tentang-sistem', function () {
     return view('tentang-sistem');
 })->name('tentang.sistem');
 
 
-// Halaman Skrining Anemia
+// =========================
+// SKRINING ANEMIA
+// =========================
+
 Route::get('/skrining', function () {
     return view('skrining');
 })->name('skrining');
 
 
-// Halaman Hasil Deteksi
+// =========================
+// HASIL DETEKSI
+// =========================
+
 Route::get('/hasil-deteksi', function () {
     return view('hasil-deteksi');
 })->name('hasil.deteksi');

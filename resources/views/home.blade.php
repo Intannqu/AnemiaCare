@@ -692,19 +692,19 @@
 
         <nav class="nav-menu">
 
-            <a href="#informasi">
-                Informasi Anemia
-            </a>
+    <a href="{{ route('home') }}" class="nav-link">
+        Informasi Anemia
+    </a>
 
-            <a href="TentangSistem.php">
-    Tentang Sistem
-</a>
+    <a href="{{ route('tentang.sistem') }}" class="nav-link">
+        Tentang Sistem
+    </a>
 
-            <a href="skrinning.php">
-    Skrining Anemia
-</a>
+    <a href="{{ route('skrining') }}" class="nav-link">
+        Skrining Anemia
+    </a>
 
-        </nav>
+</nav>
 
 
         <a href="#" class="login-admin">

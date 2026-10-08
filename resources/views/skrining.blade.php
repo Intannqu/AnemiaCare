@@ -7,7 +7,7 @@
 
     <title>Deteksi Dini Anemia - AnemiaCare</title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css',  'resources/css/skrining.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -40,18 +40,15 @@
             <!-- MENU -->
             <nav class="nav-menu">
 
-    <a href="{{ route('home') }}"
-       class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
+    <a href="{{ route('home') }}" class="nav-link">
         Informasi Anemia
     </a>
 
-    <a href="{{ route('tentang.sistem') }}"
-       class="nav-link {{ request()->routeIs('tentang.sistem') ? 'active' : '' }}">
+    <a href="{{ route('tentang.sistem') }}" class="nav-link">
         Tentang Sistem
     </a>
 
-    <a href="{{ route('skrining') }}"
-       class="nav-link {{ request()->routeIs('skrining') ? 'active' : '' }}">
+    <a href="{{ route('skrining') }}" class="nav-link">
         Skrining Anemia
     </a>
 

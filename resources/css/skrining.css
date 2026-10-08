@@ -1,10 +1,76 @@
-@import 'tailwindcss';
+.page-container {
+    width: 90%;
+    max-width: 1160px;
+    margin: 0 auto;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+.screening-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
+.screening-card {
+    background: #fff7f7;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 38px;
+}
+
+.card-title {
+    background: #f7ddd7;
+    padding: 8px 22px;
+    font-size: 25px;
+}
+
+.card-content {
+    padding: 18px 22px 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.symptom-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.symptom-row {
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    gap: 12px;
+    align-items: center;
+}
+
+.symptom-question {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    padding: 12px 17px;
+    background: #f0ebeb;
+    border-radius: 15px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-card {
+    background: #fff0f0;
+    border-radius: 15px;
+    padding: 16px 18px 20px;
+    margin-bottom: 26px;
+}
+
+.result-button {
+    padding: 10px 20px;
+    background: #ff7777;
+    border: 1px solid #111;
+    cursor: pointer;
 }
