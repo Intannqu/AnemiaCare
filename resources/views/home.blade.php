@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AnemiaCare | Sistem Deteksi Dini Penyakit Anemia</title>
 
+
     <style>
+
+        /* ==================================================
+           RESET
+        ================================================== */
+
         * {
             margin: 0;
             padding: 0;
@@ -28,22 +37,27 @@
             color: inherit;
         }
 
-        /* =========================
+
+        /* ==================================================
            NAVBAR
-        ========================= */
+        ================================================== */
 
         .navbar {
             position: sticky;
             top: 0;
             z-index: 1000;
+
             background: rgba(255, 255, 255, 0.96);
+
             border-bottom: 1px solid #eeeeee;
+
             backdrop-filter: blur(10px);
         }
 
         .nav-container {
             max-width: 1200px;
             height: 75px;
+
             margin: auto;
             padding: 0 30px;
 
@@ -52,13 +66,18 @@
             justify-content: space-between;
         }
 
-        /* LOGO */
+
+        /* ==================================================
+           LOGO
+        ================================================== */
 
         .logo {
             display: flex;
             align-items: center;
             gap: 8px;
+
             color: #c8102e;
+
             font-size: 20px;
             font-weight: bold;
         }
@@ -66,49 +85,69 @@
         .logo-icon {
             width: 36px;
             height: 36px;
+
             border: 3px solid #c8102e;
             border-radius: 50%;
+
             position: relative;
         }
 
         .logo-icon::before {
             content: "♥";
+
             position: absolute;
+
             color: #c8102e;
+
             font-size: 21px;
+
             top: 3px;
             left: 5px;
         }
 
         .logo-text small {
             display: block;
+
             font-size: 6px;
+
             letter-spacing: 1px;
+
             font-weight: normal;
         }
 
-        /* MENU */
+
+        /* ==================================================
+           MENU
+        ================================================== */
 
         .nav-menu {
             display: flex;
             align-items: center;
+
             gap: 35px;
         }
 
         .nav-menu a {
             font-size: 14px;
+
             position: relative;
+
             padding: 8px 0;
         }
 
         .nav-menu a::after {
             content: "";
+
             position: absolute;
+
             left: 0;
             bottom: 0;
+
             width: 0;
             height: 2px;
+
             background: #c8102e;
+
             transition: .3s;
         }
 
@@ -120,34 +159,378 @@
             width: 100%;
         }
 
+
+        /* ==================================================
+           LOGIN ADMIN BUTTON
+        ================================================== */
+
         .login-admin {
             border: 1px solid #888;
+
             padding: 9px 24px;
+
             border-radius: 6px;
+
             font-size: 13px;
+
             transition: .3s;
+
+            cursor: pointer;
+
+            background: white;
         }
 
         .login-admin:hover {
             background: #c8102e;
+
             border-color: #c8102e;
+
             color: white;
         }
 
-        /* =========================
+
+        /* ==================================================
+           POPUP LOGIN
+           
+           SATU-SATUNYA POPUP LOGIN
+        ================================================== */
+
+        .login-modal {
+
+            display: none;
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            background: rgba(0, 0, 0, 0.50);
+
+            z-index: 999999;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+
+        /* ==================================================
+           KOTAK LOGIN
+        ================================================== */
+
+        .login-modal-box {
+
+            position: relative;
+
+            width: 500px;
+
+            max-width: 100%;
+
+            background: #ffffff;
+
+            border-radius: 16px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.30);
+
+            animation: loginModalAnimation 0.25s ease-out;
+        }
+
+
+        /* ==================================================
+           ANIMASI
+        ================================================== */
+
+        @keyframes loginModalAnimation {
+
+            from {
+                opacity: 0;
+
+                transform: scale(0.90);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* ==================================================
+           HEADER LOGIN
+        ================================================== */
+
+        .login-modal-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+        }
+
+        .login-modal-header h2 {
+
+            font-size: 30px;
+
+            font-weight: 700;
+
+            color: #222;
+        }
+
+
+        /* ==================================================
+           TOMBOL CLOSE
+        ================================================== */
+
+        .login-modal-close {
+
+            width: 38px;
+            height: 38px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #555;
+
+            font-size: 30px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            transition: .2s;
+        }
+
+        .login-modal-close:hover {
+
+            background: #f5f5f5;
+
+            color: #c8102e;
+        }
+
+
+        /* ==================================================
+           DESKRIPSI
+        ================================================== */
+
+        .login-modal-description {
+
+            margin-bottom: 30px;
+
+            color: #666;
+
+            font-size: 15px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ==================================================
+           FORM GROUP
+        ================================================== */
+
+        .login-form-group {
+
+            margin-bottom: 22px;
+        }
+
+
+        /* ==================================================
+           LABEL
+        ================================================== */
+
+        .login-form-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #333;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        /* ==================================================
+           INPUT
+        ================================================== */
+
+        .login-form-group input {
+
+            width: 100%;
+
+            height: 50px;
+
+            padding: 0 15px;
+
+            border: 1px solid #d0d0d0;
+
+            border-radius: 7px;
+
+            background: #fff;
+
+            color: #222;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: .2s;
+        }
+
+        .login-form-group input:focus {
+
+            border-color: #c8102e;
+
+            box-shadow:
+                0 0 0 3px rgba(200, 16, 46, 0.10);
+        }
+
+
+        /* ==================================================
+           OPTIONS
+        ================================================== */
+
+        .login-options {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+
+            font-size: 13px;
+        }
+
+        .remember-login {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #555;
+        }
+
+        .remember-login input {
+
+            width: 15px;
+            height: 15px;
+        }
+
+        .forgot-password {
+
+            color: #c8102e;
+
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* ==================================================
+           BUTTON LOGIN
+        ================================================== */
+
+        .login-submit {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #c8102e;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .login-submit:hover {
+
+            background: #a70d25;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ==================================================
+           REGISTER
+        ================================================== */
+
+        .login-register {
+
+            margin-top: 22px;
+
+            text-align: center;
+
+            color: #666;
+
+            font-size: 13px;
+        }
+
+        .login-register a {
+
+            color: #c8102e;
+
+            font-weight: 600;
+        }
+
+
+        /* ==================================================
            HERO
-        ========================= */
+        ================================================== */
 
         .hero {
+
             min-height: 590px;
 
             background:
+
                 radial-gradient(
                     circle at 85% 45%,
                     rgba(255,255,255,.7) 0,
                     rgba(255,255,255,.7) 20%,
                     transparent 20.5%
                 ),
+
                 linear-gradient(
                     135deg,
                     #ffffff 0%,
@@ -157,14 +540,21 @@
         }
 
         .hero-container {
+
             max-width: 1200px;
+
             min-height: 590px;
+
             margin: auto;
+
             padding: 60px 30px;
 
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             align-items: center;
+
             gap: 50px;
         }
 
@@ -173,8 +563,11 @@
         }
 
         .hero-welcome {
+
             font-size: 18px;
+
             font-weight: bold;
+
             margin-bottom: 22px;
         }
 
@@ -183,30 +576,43 @@
         }
 
         .hero h1 {
+
             font-size: 45px;
+
             line-height: 1.15;
+
             margin-bottom: 22px;
         }
 
         .hero-description {
+
             font-size: 17px;
+
             line-height: 1.7;
+
             color: #444;
+
             margin-bottom: 30px;
         }
 
         .btn-screening {
+
             display: inline-flex;
+
             align-items: center;
+
             gap: 20px;
 
             background: #c8102e;
+
             color: white;
 
             padding: 13px 22px;
+
             border-radius: 7px;
 
             font-size: 14px;
+
             font-weight: bold;
 
             box-shadow: 0 8px 20px rgba(200,16,46,.2);
@@ -215,7 +621,9 @@
         }
 
         .btn-screening:hover {
+
             background: #a90e27;
+
             transform: translateY(-3px);
         }
 
@@ -223,17 +631,26 @@
             font-size: 20px;
         }
 
-        /* HERO IMAGE */
+
+        /* ==================================================
+           HERO IMAGE
+        ================================================== */
 
         .hero-image {
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
         }
 
         .hero-image img {
+
             width: 440px;
+
             height: 440px;
+
             object-fit: cover;
 
             border-radius: 50%;
@@ -243,42 +660,54 @@
             box-shadow: 0 15px 40px rgba(100,0,20,.1);
         }
 
-        /* =========================
+
+        /* ==================================================
            SECTION
-        ========================= */
+        ================================================== */
 
         .section {
             padding: 85px 30px;
         }
 
         .container {
+
             max-width: 1200px;
+
             margin: auto;
         }
 
         .section-title {
+
             font-size: 29px;
+
             margin-bottom: 35px;
         }
 
-        /* =========================
+
+        /* ==================================================
            INFORMASI ANEMIA
-        ========================= */
+        ================================================== */
 
         .information {
-            background: linear-gradient(
-                180deg,
-                #ffd9dc 0%,
-                #fff 100%
-            );
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffd9dc 0%,
+                    #fff 100%
+                );
         }
 
         .anemia-card {
+
             max-width: 1050px;
+
             margin: auto;
 
             display: grid;
+
             grid-template-columns: 210px 1fr;
+
             gap: 35px;
 
             align-items: center;
@@ -295,7 +724,9 @@
         }
 
         .anemia-card img {
+
             width: 200px;
+
             height: 155px;
 
             object-fit: cover;
@@ -304,35 +735,46 @@
         }
 
         .anemia-card h2 {
+
             font-size: 25px;
+
             margin-bottom: 15px;
         }
 
         .anemia-card p {
+
             font-size: 15px;
+
             line-height: 1.7;
         }
 
-        /* =========================
+
+        /* ==================================================
            GEJALA
-        ========================= */
+        ================================================== */
 
         .symptom-section {
             margin-top: 45px;
         }
 
         .symptom-section h2 {
+
             font-size: 26px;
+
             margin-bottom: 30px;
         }
 
         .symptoms {
+
             display: grid;
+
             grid-template-columns: repeat(4, 1fr);
+
             gap: 25px;
         }
 
         .symptom {
+
             text-align: center;
 
             padding: 20px 10px;
@@ -343,6 +785,7 @@
         }
 
         .symptom:hover {
+
             background: white;
 
             transform: translateY(-5px);
@@ -351,10 +794,13 @@
         }
 
         .symptom-icon {
+
             width: 70px;
+
             height: 70px;
 
             margin: auto;
+
             margin-bottom: 13px;
 
             border-radius: 50%;
@@ -362,7 +808,9 @@
             background: white;
 
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
             font-size: 32px;
@@ -371,15 +819,19 @@
         }
 
         .symptom p {
+
             font-size: 14px;
+
             font-weight: 600;
         }
 
-        /* =========================
+
+        /* ==================================================
            PENYEBAB
-        ========================= */
+        ================================================== */
 
         .causes {
+
             position: relative;
 
             background:
@@ -393,14 +845,17 @@
         }
 
         .causes::before {
+
             content: "";
 
             position: absolute;
 
             width: 450px;
+
             height: 450px;
 
             left: -200px;
+
             bottom: -230px;
 
             border-radius: 50%;
@@ -409,10 +864,13 @@
         }
 
         .cause-box {
+
             position: relative;
+
             z-index: 1;
 
             max-width: 1100px;
+
             margin: auto;
 
             padding: 30px 35px;
@@ -427,8 +885,11 @@
         }
 
         .cause {
+
             display: grid;
+
             grid-template-columns: 30px 1fr;
+
             gap: 12px;
 
             margin-bottom: 20px;
@@ -439,35 +900,45 @@
         }
 
         .cause-number {
+
             color: #c8102e;
+
             font-weight: bold;
+
             font-size: 17px;
         }
 
         .cause p {
+
             font-size: 15px;
+
             line-height: 1.6;
         }
 
-        /* =========================
+
+        /* ==================================================
            PENCEGAHAN
-        ========================= */
+        ================================================== */
 
         .prevention {
             background: #fff;
         }
 
         .prevention-list {
+
             max-width: 900px;
+
             margin: auto;
 
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
 
             gap: 35px;
         }
 
         .prevention-card {
+
             min-height: 220px;
 
             background: #fafafa;
@@ -477,9 +948,11 @@
             border-radius: 18px;
 
             display: flex;
+
             flex-direction: column;
 
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
@@ -488,6 +961,7 @@
         }
 
         .prevention-card:hover {
+
             background: white;
 
             transform: translateY(-7px);
@@ -498,13 +972,17 @@
         }
 
         .prevention-icon {
+
             width: 80px;
+
             height: 80px;
 
             border-radius: 18px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             background: white;
@@ -515,27 +993,36 @@
         }
 
         .prevention-card h3 {
+
             font-size: 16px;
+
             line-height: 1.5;
         }
 
-        /* =========================
+
+        /* ==================================================
            FOOTER
-        ========================= */
+        ================================================== */
 
         footer {
+
             background: #171717;
+
             color: white;
 
             padding: 35px 30px;
         }
 
         .footer-container {
+
             max-width: 1200px;
+
             margin: auto;
 
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
         }
 
@@ -544,13 +1031,16 @@
         }
 
         .footer-text {
+
             font-size: 13px;
+
             color: #ccc;
         }
 
-        /* =========================
+
+        /* ==================================================
            RESPONSIVE TABLET
-        ========================= */
+        ================================================== */
 
         @media(max-width: 900px) {
 
@@ -559,7 +1049,9 @@
             }
 
             .hero-container {
+
                 grid-template-columns: 1fr;
+
                 text-align: center;
             }
 
@@ -572,16 +1064,21 @@
             }
 
             .hero-image img {
+
                 width: 330px;
+
                 height: 330px;
             }
 
             .symptoms {
+
                 grid-template-columns: repeat(2, 1fr);
             }
 
             .anemia-card {
+
                 grid-template-columns: 1fr;
+
                 text-align: center;
             }
 
@@ -590,13 +1087,16 @@
             }
 
             .prevention-list {
+
                 grid-template-columns: repeat(3, 1fr);
             }
+
         }
 
-        /* =========================
+
+        /* ==================================================
            RESPONSIVE HP
-        ========================= */
+        ================================================== */
 
         @media(max-width: 600px) {
 
@@ -609,7 +1109,9 @@
             }
 
             .login-admin {
+
                 padding: 8px 12px;
+
                 font-size: 12px;
             }
 
@@ -626,7 +1128,9 @@
             }
 
             .hero-image img {
+
                 width: 280px;
+
                 height: 280px;
             }
 
@@ -639,7 +1143,9 @@
             }
 
             .symptoms {
+
                 grid-template-columns: repeat(2, 1fr);
+
                 gap: 10px;
             }
 
@@ -656,16 +1162,177 @@
             }
 
             .footer-container {
+
                 flex-direction: column;
+
                 gap: 15px;
+
                 text-align: center;
             }
+
+
+            /* POPUP HP */
+
+            .login-modal-box {
+
+                width: 100%;
+
+                padding: 25px;
+
+                border-radius: 12px;
+            }
+
+            .login-modal-header h2 {
+                font-size: 25px;
+            }
+
         }
+
     </style>
+
 </head>
 
 
 <body>
+
+
+<!-- ==================================================
+     POPUP LOGIN ADMIN
+================================================== -->
+
+<div
+    id="loginModal"
+    class="login-modal"
+>
+
+
+    <div class="login-modal-box">
+
+
+        <!-- HEADER -->
+
+        <div class="login-modal-header">
+
+            <h2>
+                Login
+            </h2>
+
+
+            <button
+                type="button"
+                id="closeLoginModal"
+                class="login-modal-close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- DESKRIPSI -->
+
+        <p class="login-modal-description">
+
+            Masuk untuk melanjutkan ke sistem AnemiaCare.
+
+        </p>
+
+
+        <!-- FORM -->
+
+        <form id="loginForm">
+
+
+            <!-- USERNAME -->
+
+            <div class="login-form-group">
+
+                <label for="loginUsername">
+
+                    Email atau Username
+
+                </label>
+
+                <input
+                    type="text"
+                    id="loginUsername"
+                    name="username"
+                    placeholder="Masukkan email atau username"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="login-form-group">
+
+                <label for="loginPassword">
+
+                    Password
+
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    name="password"
+                    placeholder="Masukkan password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- OPTIONS -->
+
+            <div class="login-options">
+
+
+                <label class="remember-login">
+
+                    <input
+                        type="checkbox"
+                        name="remember"
+                    >
+
+                    <span>
+                        Ingat saya
+                    </span>
+
+                </label>
+
+
+                <a
+                    href="#"
+                    class="forgot-password"
+                >
+                    Lupa password?
+                </a>
+
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <button
+                type="submit"
+                class="login-submit"
+            >
+
+                Login
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+</div>
+
 
 <!-- ==================================================
      NAVBAR
@@ -675,46 +1342,73 @@
 
     <div class="nav-container">
 
-        <a href="#" class="logo">
+
+        <!-- LOGO -->
+
+        <a
+            href="{{ route('home') }}"
+            class="logo"
+        >
 
             <div class="logo-icon"></div>
 
             <div class="logo-text">
+
                 AnemiaCare
 
                 <small>
                     Kenali Gejala. Jaga Kesehatanmu
                 </small>
+
             </div>
 
         </a>
 
 
+        <!-- MENU -->
+
         <nav class="nav-menu">
 
-    <a href="{{ route('home') }}" class="nav-link">
-        Informasi Anemia
-    </a>
-
-    <a href="{{ route('tentang.sistem') }}" class="nav-link">
-        Tentang Sistem
-    </a>
-
-    <a href="{{ route('skrining') }}" class="nav-link">
-        Skrining Anemia
-    </a>
-
-</nav>
+            <a
+                href="{{ route('home') }}"
+                class="nav-link"
+            >
+                Informasi Anemia
+            </a>
 
 
-        <a href="#" class="login-admin">
+            <a
+                href="{{ route('tentang.sistem') }}"
+                class="nav-link"
+            >
+                Tentang Sistem
+            </a>
+
+
+            <a
+                href="{{ route('skrining') }}"
+                class="nav-link"
+            >
+                Skrining Anemia
+            </a>
+
+        </nav>
+
+
+        <!-- LOGIN ADMIN -->
+
+        <button
+            type="button"
+            class="login-admin"
+            id="openLoginModal"
+        >
             Login Admin
-        </a>
+        </button>
+
 
     </div>
 
 </header>
-
 
 
 <!-- ==================================================
@@ -725,11 +1419,14 @@
 
     <div class="hero-container">
 
+
         <div class="hero-content">
+
 
             <div class="hero-welcome">
 
                 Selamat Datang, Sistem Deteksi
+
                 <br>
 
                 <i>
@@ -740,8 +1437,13 @@
 
 
             <h1>
+
                 Yuk, jaga kesehatan Anda
+
+                <br>
+
                 sejak dini!
+
             </h1>
 
 
@@ -754,7 +1456,10 @@
             </p>
 
 
-            <a href="#skrining" class="btn-screening">
+            <a
+                href="#skrining"
+                class="btn-screening"
+            >
 
                 Mulai Skrining
 
@@ -764,16 +1469,11 @@
 
             </a>
 
+
         </div>
 
 
-
         <div class="hero-image">
-
-            <!--
-                Ganti src gambar ini dengan gambar
-                yang ingin digunakan pada website.
-            -->
 
             <img
                 src="hero-woman.png"
@@ -782,22 +1482,27 @@
 
         </div>
 
+
     </div>
 
 </section>
-
 
 
 <!-- ==================================================
      INFORMASI ANEMIA
 ================================================== -->
 
-<section class="section information" id="informasi">
+<section
+    class="section information"
+    id="informasi"
+>
+
 
     <div class="container">
 
 
         <div class="anemia-card">
+
 
             <img
                 src="anemia-woman.png"
@@ -825,13 +1530,16 @@
 
             </div>
 
-        </div>
 
+        </div>
 
 
         <!-- GEJALA -->
 
-        <div class="symptom-section" id="tentang">
+        <div
+            class="symptom-section"
+            id="tentang"
+        >
 
             <h2>
                 Apa Saja Gejala Anemia
@@ -854,7 +1562,6 @@
                 </div>
 
 
-
                 <div class="symptom">
 
                     <div class="symptom-icon">
@@ -866,7 +1573,6 @@
                     </p>
 
                 </div>
-
 
 
                 <div class="symptom">
@@ -882,7 +1588,6 @@
                 </div>
 
 
-
                 <div class="symptom">
 
                     <div class="symptom-icon">
@@ -894,7 +1599,6 @@
                     </p>
 
                 </div>
-
 
 
                 <div class="symptom">
@@ -910,7 +1614,6 @@
                 </div>
 
 
-
                 <div class="symptom">
 
                     <div class="symptom-icon">
@@ -922,7 +1625,6 @@
                     </p>
 
                 </div>
-
 
 
                 <div class="symptom">
@@ -947,7 +1649,6 @@
 </section>
 
 
-
 <!-- ==================================================
      PENYEBAB ANEMIA
 ================================================== -->
@@ -955,6 +1656,7 @@
 <section class="section causes">
 
     <div class="container">
+
 
         <h2 class="section-title">
             Apa Sih Penyebab Anemia?
@@ -981,7 +1683,6 @@
                 </p>
 
             </div>
-
 
 
             <div class="cause">
@@ -1011,7 +1712,6 @@
             </div>
 
 
-
             <div class="cause">
 
                 <div class="cause-number">
@@ -1028,7 +1728,7 @@
                     tumor, pengobatan, toksin serta berkurangnya
                     eritropoitin (pada penyakit ginjal kronik).
                     Contohnya yaitu anemia defisiensi besi,
-                    anemia megaloblastik, anemia aplastik
+                    anemia megaloblastik, anemia aplastik.
 
                 </p>
 
@@ -1042,14 +1742,17 @@
 </section>
 
 
-
 <!-- ==================================================
      PENCEGAHAN
 ================================================== -->
 
-<section class="section prevention" id="skrining">
+<section
+    class="section prevention"
+    id="skrining"
+>
 
     <div class="container">
+
 
         <h2 class="section-title">
 
@@ -1080,7 +1783,6 @@
             </div>
 
 
-
             <div class="prevention-card">
 
                 <div class="prevention-icon">
@@ -1100,7 +1802,6 @@
                 </h3>
 
             </div>
-
 
 
             <div class="prevention-card">
@@ -1127,7 +1828,6 @@
 </section>
 
 
-
 <!-- ==================================================
      FOOTER
 ================================================== -->
@@ -1135,6 +1835,7 @@
 <footer>
 
     <div class="footer-container">
+
 
         <div class="logo footer-logo">
 
@@ -1159,9 +1860,118 @@
 
         </div>
 
+
     </div>
 
 </footer>
 
+
+<!-- ==================================================
+     JAVASCRIPT LOGIN
+================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    const openLoginButton =
+        document.getElementById("openLoginModal");
+
+
+    const loginModal =
+        document.getElementById("loginModal");
+
+
+    const closeLoginButton =
+        document.getElementById("closeLoginModal");
+
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+
+    /* ==============================================
+       BUKA POPUP
+    ============================================== */
+
+    openLoginButton.addEventListener("click", function () {
+
+        loginModal.style.display = "flex";
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+
+    /* ==============================================
+       TUTUP POPUP DENGAN X
+    ============================================== */
+
+    closeLoginButton.addEventListener("click", function () {
+
+        loginModal.style.display = "none";
+
+        document.body.style.overflow = "";
+
+    });
+
+
+    /* ==============================================
+       TUTUP JIKA KLIK AREA GELAP
+    ============================================== */
+
+    loginModal.addEventListener("click", function (event) {
+
+        if (event.target === loginModal) {
+
+            loginModal.style.display = "none";
+
+            document.body.style.overflow = "";
+
+        }
+
+    });
+
+
+    /* ==============================================
+       TUTUP DENGAN TOMBOL ESC
+    ============================================== */
+
+    document.addEventListener("keydown", function (event) {
+
+        if (
+            event.key === "Escape" &&
+            loginModal.style.display === "flex"
+        ) {
+
+            loginModal.style.display = "none";
+
+            document.body.style.overflow = "";
+
+        }
+
+    });
+
+
+    /* ==============================================
+       FORM LOGIN
+    ============================================== */
+
+    loginForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        alert("Form login berhasil dikirim.");
+
+    });
+
+
+});
+
+</script>
+
+
 </body>
+
 </html>
