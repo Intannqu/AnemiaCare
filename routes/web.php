@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -41,6 +42,35 @@ Route::get('/skrining', function () {
 // HASIL DETEKSI
 // =========================
 
+
 Route::get('/hasil-deteksi', function () {
-    return view('hasil-deteksi');
+
+    $data = [
+        'hasil' => request('hasil', 'tidak_anemia'),
+        'nama' => request('nama', 'Nama Pasien'),
+        'jenis_kelamin' => request('jenis_kelamin', 'Laki-laki'),
+        'usia' => request('usia', 20),
+        'tanggal_lahir' => request('tanggal_lahir', '24 September 2003'),
+
+        'gejala' => [
+            'kelemahan_kelelahan' => 'Tidak',
+            'jantung_berdebar' => 'Ya',
+            'sesak_nafas' => 'Tidak',
+            'pucat' => 'Tidak',
+            'pusing' => 'Tidak',
+            'perubahan_warna_tinja' => 'Tidak',
+            'hipotensi' => 'Tidak',
+        ],
+    ];
+
+    return view('hasil-deteksi', compact('data'));
+
 })->name('hasil.deteksi');
+
+// =========================
+// DASHBOARD ADMIN
+// =========================
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
