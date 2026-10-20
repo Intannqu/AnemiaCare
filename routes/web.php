@@ -74,3 +74,8 @@ Route::get('/hasil-deteksi', function () {
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 });
+
+// Halaman Informasi Anemia Admin
+Route::get('/admin/informasi-anemia', function () {
+    return view('admin.informasi-anemia');
+});
