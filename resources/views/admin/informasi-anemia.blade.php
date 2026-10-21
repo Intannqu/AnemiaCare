@@ -7,6 +7,262 @@
     <title>Informasi Anemia | AnemiaCare</title>
 
     <style>
+        /* ===== MODAL EDIT INFORMASI ANEMIA ===== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(31, 20, 22, 0.55);
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.show {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-card {
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #f0e4e5;
+    border-radius: 18px;
+    box-shadow: 0 24px 70px rgba(40, 10, 15, 0.20);
+    animation: slideUp 0.25s ease;
+}
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 24px 26px 20px;
+    border-bottom: 1px solid #f1e8e9;
+}
+
+.modal-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+}
+
+.modal-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #fff0f1;
+    color: #b42332;
+    font-size: 22px;
+}
+
+.modal-header h2 {
+    margin: 1px 0 5px;
+    color: #292326;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.modal-header p {
+    color: #81767a;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.modal-close {
+    display: grid;
+    place-items: center;
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 9px;
+    background: #f8f5f5;
+    color: #76686b;
+    font-size: 23px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.modal-close:hover {
+    background: #fff0f1;
+    color: #b42332;
+}
+
+.modal-body {
+    padding: 24px 26px;
+}
+
+.form-group {
+    margin-bottom: 21px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #383034;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.required-mark {
+    color: #b42332;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e6dadd;
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+    color: #292326;
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control::placeholder {
+    color: #b0a5a8;
+}
+
+.form-control:focus {
+    border-color: #b42332;
+    box-shadow: 0 0 0 3px rgba(180, 35, 50, 0.09);
+}
+
+textarea.form-control {
+    min-height: 155px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+.field-hint {
+    margin-top: 7px;
+    color: #8d8184;
+    font-size: 11px;
+}
+
+.modal-error {
+    display: none;
+    margin-bottom: 15px;
+    padding: 11px 13px;
+    border: 1px solid #f4d0d4;
+    border-radius: 9px;
+    background: #fff3f4;
+    color: #a21f2d;
+    font-size: 12px;
+}
+
+.modal-error.show {
+    display: block;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 18px 26px 24px;
+    border-top: 1px solid #f1e8e9;
+    background: #fffdfd;
+}
+
+.modal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 11px 19px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.modal-btn-cancel {
+    border-color: #e7dcde;
+    background: #fff;
+    color: #62575a;
+}
+
+.modal-btn-cancel:hover {
+    background: #f8f5f5;
+}
+
+.modal-btn-save {
+    background: #b42332;
+    color: #fff;
+}
+
+.modal-btn-save:hover {
+    background: #901c28;
+    box-shadow: 0 4px 12px rgba(180, 35, 50, 0.2);
+}
+
+.modal-btn:focus-visible,
+.modal-close:focus-visible {
+    outline: 3px solid rgba(180, 35, 50, 0.25);
+    outline-offset: 2px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 520px) {
+    .modal-overlay {
+        padding: 12px;
+    }
+
+    .modal-card {
+        border-radius: 14px;
+    }
+
+    .modal-header {
+        padding: 19px 18px;
+    }
+
+    .modal-body {
+        padding: 20px 18px;
+    }
+
+    .modal-footer {
+        padding: 16px 18px 19px;
+    }
+
+    .modal-header h2 {
+        font-size: 17px;
+    }
+
+    .modal-footer .modal-btn {
+        flex: 1;
+        padding: 11px 12px;
+    }
+}
+
         :root {
             --primary: #b42332;
             --primary-dark: #901c28;
@@ -684,6 +940,93 @@
 <body>
 <div class="app">
 
+    
+<!-- POP-UP EDIT INFORMASI ANEMIA -->
+<div class="modal-overlay"
+     id="editModal"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="modalTitle">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+            <div class="modal-heading">
+                <div class="modal-icon">✎</div>
+
+                <div>
+                    <h2 id="modalTitle">Edit Informasi Anemia</h2>
+                    <p>Perbarui informasi edukasi anemia dengan mudah.</p>
+                </div>
+            </div>
+
+            <button type="button"
+                    class="modal-close"
+                    onclick="closeEditModal()"
+                    aria-label="Tutup pop-up">
+                &times;
+            </button>
+        </div>
+
+        <form id="editInfoForm">
+            <div class="modal-body">
+
+                <div class="modal-error" id="modalError" role="alert">
+                    Silakan lengkapi semua kolom terlebih dahulu.
+                </div>
+
+                <div class="form-group">
+                    <label for="editTitle">
+                        Judul Informasi <span class="required-mark">*</span>
+                    </label>
+
+                    <input type="text"
+                           id="editTitle"
+                           class="form-control"
+                           placeholder="Contoh: Pengertian Anemia"
+                           maxlength="150"
+                           required>
+
+                    <p class="field-hint">
+                        Masukkan judul informasi yang singkat dan jelas.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDescription">
+                        Deskripsi Informasi <span class="required-mark">*</span>
+                    </label>
+
+                    <textarea id="editDescription"
+                              class="form-control"
+                              placeholder="Tuliskan deskripsi informasi anemia..."
+                              maxlength="5000"
+                              required></textarea>
+
+                    <p class="field-hint">
+                        Masukkan penjelasan yang mudah dipahami pengunjung.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button"
+                        class="modal-btn modal-btn-cancel"
+                        onclick="closeEditModal()">
+                    Batal
+                </button>
+
+                <button type="submit"
+                        class="modal-btn modal-btn-save">
+                    Simpan Perubahan
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
     <!-- SIDEBAR -->
     <aside class="sidebar">
 
@@ -791,11 +1134,14 @@
                     </label>
 
                     <!-- Sesuaikan URL ini dengan route tambah informasi -->
-                    <a href="{{ url('/admin/informasi-anemia/create') }}"
-                       class="btn btn-primary">
-                        <span>＋</span>
-                        Tambah Informasi
-                    </a>
+                    
+<button type="button"
+        class="btn btn-primary"
+        onclick="openAddModal()">
+    <span>＋</span>
+    Tambah Informasi
+</button>
+
                 </div>
             </div>
 
@@ -824,11 +1170,13 @@
                             </td>
                             <td class="date">24/10/2026</td>
                             <td>
-                                <div class="actions">
-                                    <a href="{{ url('/admin/informasi-anemia/1/edit') }}"
-                                       class="action-btn edit-btn"
-                                       title="Edit informasi"
-                                       aria-label="Edit informasi">✎</a>
+                                <button type="button"
+        class="action-btn edit-btn"
+        title="Edit informasi"
+        aria-label="Edit informasi"
+        onclick="openEditModal(this)">
+    ✎
+</button>
 
                                     <button type="button"
                                             class="action-btn delete-btn"
@@ -851,11 +1199,11 @@
                             </td>
                             <td class="date">24/10/2026</td>
                             <td>
-                                <div class="actions">
-                                    <a href="{{ url('/admin/informasi-anemia/2/edit') }}"
-                                       class="action-btn edit-btn"
-                                       title="Edit informasi"
-                                       aria-label="Edit informasi">✎</a>
+                                <<button type="button"
+        class="action-btn edit-btn"
+        onclick="openEditModal(this)">
+    ✎
+</button>
 
                                     <button type="button"
                                             class="action-btn delete-btn"
@@ -878,11 +1226,11 @@
                             </td>
                             <td class="date">24/10/2026</td>
                             <td>
-                                <div class="actions">
-                                    <a href="{{ url('/admin/informasi-anemia/3/edit') }}"
-                                       class="action-btn edit-btn"
-                                       title="Edit informasi"
-                                       aria-label="Edit informasi">✎</a>
+                                <<button type="button"
+        class="action-btn edit-btn"
+        onclick="openEditModal(this)">
+    ✎
+</button>
 
                                     <button type="button"
                                             class="action-btn delete-btn"
@@ -905,11 +1253,11 @@
                             </td>
                             <td class="date">24/10/2026</td>
                             <td>
-                                <div class="actions">
-                                    <a href="{{ url('/admin/informasi-anemia/4/edit') }}"
-                                       class="action-btn edit-btn"
-                                       title="Edit informasi"
-                                       aria-label="Edit informasi">✎</a>
+                                <button type="button"
+        class="action-btn edit-btn"
+        onclick="openEditModal(this)">
+    ✎
+</button>
 
                                     <button type="button"
                                             class="action-btn delete-btn"
@@ -932,11 +1280,11 @@
                             </td>
                             <td class="date">24/10/2026</td>
                             <td>
-                                <div class="actions">
-                                    <a href="{{ url('/admin/informasi-anemia/5/edit') }}"
-                                       class="action-btn edit-btn"
-                                       title="Edit informasi"
-                                       aria-label="Edit informasi">✎</a>
+                                <button type="button"
+        class="action-btn edit-btn"
+        onclick="openEditModal(this)">
+    ✎
+</button>
 
                                     <button type="button"
                                             class="action-btn delete-btn"
@@ -1016,6 +1364,112 @@
         );
     }
 </script>
+
+<script>
+    let selectedEditRow = null;
+    
+    const editModal = document.getElementById('editModal');
+    const editInfoForm = document.getElementById('editInfoForm');
+    const editTitle = document.getElementById('editTitle');
+    const editDescription = document.getElementById('editDescription');
+    const modalError = document.getElementById('modalError');
+
+    // Membuka pop-up dan mengambil data dari baris yang dipilih
+    function openEditModal(button) {
+        selectedEditRow = button.closest('tr');
+
+        if (!selectedEditRow) return;
+
+        const titleElement =
+            selectedEditRow.querySelector('.info-title');
+
+        const descriptionElement =
+            selectedEditRow.querySelector('.description');
+
+        editTitle.value = titleElement
+            ? titleElement.textContent.trim()
+            : '';
+
+        editDescription.value = descriptionElement
+            ? descriptionElement.textContent.trim()
+            : '';
+
+        modalError.classList.remove('show');
+        editModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+
+        // Fokus ke kolom judul setelah pop-up terbuka
+        setTimeout(() => editTitle.focus(), 100);
+    }
+
+    // Menutup pop-up
+    function closeEditModal() {
+        editModal.classList.remove('show');
+        document.body.style.overflow = '';
+        modalError.classList.remove('show');
+        selectedEditRow = null;
+    }
+
+    // Menutup jika area gelap di luar pop-up diklik
+    editModal.addEventListener('click', function(event) {
+        if (event.target === editModal) {
+            closeEditModal();
+        }
+    });
+
+    // Menutup dengan tombol Escape
+    document.addEventListener('keydown', function(event) {
+        if (
+            event.key === 'Escape' &&
+            editModal.classList.contains('show')
+        ) {
+            closeEditModal();
+        }
+    });
+
+    // Menyimpan perubahan pada tabel yang sedang ditampilkan
+    editInfoForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const newTitle = editTitle.value.trim();
+        const newDescription = editDescription.value.trim();
+
+        if (!newTitle || !newDescription) {
+            modalError.textContent =
+                'Judul dan deskripsi informasi wajib diisi.';
+            modalError.classList.add('show');
+            return;
+        }
+
+        if (!selectedEditRow) return;
+
+        const titleElement =
+            selectedEditRow.querySelector('.info-title');
+
+        const descriptionElement =
+            selectedEditRow.querySelector('.description');
+
+        if (titleElement && descriptionElement) {
+            // textContent mencegah input diperlakukan sebagai HTML
+            titleElement.textContent = newTitle;
+            descriptionElement.textContent = newDescription;
+
+            // Perbarui pencarian jika kolom pencarian digunakan
+            if (typeof filterTable === 'function') {
+                filterTable();
+            }
+
+            closeEditModal();
+
+            // Notifikasi berhasil untuk perubahan di tampilan
+            alert(
+                'Informasi berhasil diperbarui pada tampilan tabel.'
+            );
+        }
+    });
+</script>
+</body>
+</html>
 
 </body>
 </html>
