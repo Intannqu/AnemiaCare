@@ -79,3 +79,11 @@ Route::get('/admin/dashboard', function () {
 Route::get('/admin/informasi-anemia', function () {
     return view('admin.informasi-anemia');
 });
+
+Route::get('/admin/data-gejala', function () {
+    return view('admin.data-gejala');
+});
+
+Route::get('/admin/riwayat-pasien', function () {
+    return view('admin.riwayat-pasien');
+});
